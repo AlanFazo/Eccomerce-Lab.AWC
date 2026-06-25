@@ -2,8 +2,22 @@ const contenedorProductos = document.getElementById('contenedorProductos')
 
 fetch('https://fakestoreapi.com/products')
   .then(response => response.json())
-  .then(data => console.log(data));
+  .then(data => {renderCards(data);
+});
 
-data.forEach(producto => {
-    const {id, title, price, description, image, category}
-}); 
+function renderCards(productos) {
+    productos.forEach(producto => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        
+        card.innerHTML = `
+        <img src="${producto.image}" alt="${producto.title}" class="card-image">
+        <div class="card-content">
+            <h3 class="card-title">${producto.title}</h3>
+            <p class="card-description">${producto.description}</p>
+      </div>
+    `;
+
+contenedorProductos.appendChild(card);
+});
+}
