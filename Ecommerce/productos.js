@@ -46,8 +46,8 @@ function renderCards(productos) {
         <p>${producto.description}"</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        Precio: <strong class"d-flex justify-content-end align-items-start"> USD $ ${producto.price} </strong>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Agregar a carrito</button>
       </div>
     </div>
       </div>`;
