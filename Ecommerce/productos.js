@@ -15,6 +15,7 @@ function renderCards(productos) {
         <div class="card-content">
             <h3 class="card-title">${producto.title}</h3>
             <p class="card-description">${producto.description}</p>
+            <p class="card-price">${producto.price}</p>
       </div>
     `;
 
