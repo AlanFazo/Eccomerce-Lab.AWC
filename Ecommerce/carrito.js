@@ -10,17 +10,18 @@ function initLocalStorage() {
 
 function saveLocalStorage(item) {
     let cart = getFromLocalStorage();
+    item.cantidad = 1;
     cart.push(item);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    renderCarrito()
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    renderCarrito();
     Swal.fire({
         title: '¡Producto agregado!',
         icon: 'success',
         timer: 1500
-     });
+    });
+}
 
-
-    function renderCarrito() {
+function renderCarrito() {
     let cart = getFromLocalStorage();
     let offcanvasBody = document.getElementById('offcanvasBody');
     
@@ -45,18 +46,41 @@ function saveLocalStorage(item) {
                     <button class="btn btn-sm btn-dark" id="increment-${producto.id}">+</button>
                     <button class="btn btn-sm btn-danger" id="eliminar-${producto.id}">🗑️</button>
                 </div>
-                <p class="mb-0 fw-bold">Total: USD $${(producto.price * producto.cantidad).toFixed(2)}</p>
+                <p class="mb-0 fw-bold" id="total-${producto.id}">Total: USD $${(producto.price * producto.cantidad).toFixed(2)}</p>
             </div>
         `;
         offcanvasBody.appendChild(item);
+
+        // Eventos botones
+        document.getElementById(`increment-${producto.id}`).addEventListener('click', () => {
+            producto.cantidad++;
+            actualizarCarrito(cart);
+            renderCarrito();
+        });
+
+        document.getElementById(`decrement-${producto.id}`).addEventListener('click', () => {
+            if(producto.cantidad > 1) {
+                producto.cantidad--;
+                actualizarCarrito(cart);
+                renderCarrito();
+            }
+        });
+
+        document.getElementById(`eliminar-${producto.id}`).addEventListener('click', () => {
+            cart = cart.filter(p => p.id !== producto.id);
+            actualizarCarrito(cart);
+            renderCarrito();
+        });
     });
 }
+
+function actualizarCarrito(cart) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
 }
 
-
 function getFromLocalStorage() {
-    return JSON.parse((localStorage.getItem(STORAGE_KEY)));
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 }
 
 initLocalStorage();
-
+renderCarrito();
