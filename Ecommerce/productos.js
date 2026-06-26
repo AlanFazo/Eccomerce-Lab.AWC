@@ -11,7 +11,6 @@ function renderCards(productos) {
         col.classList.add("col");
         const card = document.createElement("div");
         card.classList.add("card");
-        
         card.innerHTML = `
         <img src="${producto.image}" alt="${producto.title}" class="card-image" style="height: 300px;object-fit: contain"> 
         <div class="card-content justify-content-center align-items-center" style="width: 300px; padding: 10px;">
@@ -22,17 +21,13 @@ function renderCards(productos) {
       </div>
     `;
 
-
-
-  
-  
-
   col.appendChild(card);
   contenedorProductos.appendChild(col);
 
 
-            let container = document.querySelector('#productmodal')
-          let btn = document.querySelector(`#btn-${producto.id}`);
+  let container = document.querySelector('#productmodal')
+  let btn = document.querySelector(`#btn-${producto.id}`);
+
       btn.addEventListener('click', () => {
         container.innerHTML =  `
           <div class="modal-dialog">
@@ -47,11 +42,16 @@ function renderCards(productos) {
       </div>
       <div class="modal-footer">
         Precio: <strong class"d-flex justify-content-end align-items-start"> USD $ ${producto.price} </strong>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Agregar a carrito</button>
+        <button type="button" class="btn btn-primary" id="btn-agregar-${producto.id}" data-bs-dismiss="modal">Agregar a carrito</button> 
       </div>
     </div>
       </div>`;
       
+        let btnAddToCart = document.querySelector(`#btn-agregar-${producto.id}`);
+        btnAddToCart.addEventListener ('click', () => {
+          saveLocalStorage(producto);
+        });
+
       const boostrapmodal = new bootstrap.Modal(container);
       boostrapmodal.show();
     });
