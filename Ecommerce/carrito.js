@@ -29,8 +29,13 @@ function renderCarrito() {
     
     if (cart.length === 0) {
         offcanvasBody.innerHTML = '<p class="text-center">El carrito está vacío</p>';
+        document.getElementById('btnFinalizar').disabled = true;
+        document.getElementById('btnVaciar').disabled = true;
         return;
     }
+    
+    document.getElementById('btnFinalizar').disabled = false;
+    document.getElementById('btnVaciar').disabled = false;
     
     cart.forEach(producto => {
         let item = document.createElement('div');
