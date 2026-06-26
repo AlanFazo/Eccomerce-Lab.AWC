@@ -1,11 +1,17 @@
 const contenedorProductos = document.getElementById('contenedorProductos')
 
-fetch('https://fakestoreapi.com/products')
-  .then(response => response.json())
-  .then(data => {renderCards(data);
+function getProducts() {
+  return fetch('https://fakestoreapi.com/products')
+    .then(response => response.json())
+};
+
+
+getProducts().then(data => {
+    renderCards(data);
 });
 
 function renderCards(productos) {
+    contenedorProductos.innerHTML = '';
     productos.forEach(producto => {
          const col = document.createElement("div");
         col.classList.add("col");
