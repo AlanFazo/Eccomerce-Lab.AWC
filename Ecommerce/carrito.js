@@ -51,7 +51,6 @@ function renderCarrito() {
         `;
         offcanvasBody.appendChild(item);
 
-        // Eventos botones
         document.getElementById(`increment-${producto.id}`).addEventListener('click', () => {
             producto.cantidad++;
             actualizarCarrito(cart);
@@ -81,6 +80,33 @@ function actualizarCarrito(cart) {
 function getFromLocalStorage() {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 }
+
+function finishLocalStorage(item) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderCarrito();
+    Swal.fire({
+        title: '¡La compra ha finalizado!',
+        icon: 'success',
+        timer: 1500
+    });
+}
+    document.getElementById(`btnFinalizar`).addEventListener('click', () => {
+        finishLocalStorage();
+    });
+
+function removeLocalStorage(item) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderCarrito();
+    Swal.fire({
+        title: '¡La compra se ha vaciado!',
+        icon: 'success',
+        timer: 1500
+    });
+}
+    document.getElementById(`btnVaciar`).addEventListener('click', () => {
+        removeLocalStorage();
+    });
+    
 
 initLocalStorage();
 renderCarrito();
