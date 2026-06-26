@@ -46,7 +46,7 @@ function renderCarrito() {
                 <p class="mb-0 fw-bold">${producto.title}</p>
                 <p class="mb-0">USD $${producto.price}</p>
                 <div class="d-flex align-items-center gap-2">
-                    <button class="btn btn-sm btn-dark" id="decrement-${producto.id}">-</button>
+                    <button class="btn btn-sm btn-dark" id="decrement-${producto.id}" ${producto.cantidad === 1 ? 'disabled' : ''}>-</button>
                     <span id="cantidad-${producto.id}">${producto.cantidad}</span>
                     <button class="btn btn-sm btn-dark" id="increment-${producto.id}">+</button>
                     <button class="btn btn-sm btn-danger" id="eliminar-${producto.id}">🗑️</button>
