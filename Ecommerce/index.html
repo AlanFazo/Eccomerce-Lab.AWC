@@ -22,7 +22,7 @@
         class="form-control w-50" 
         placeholder="Buscar producto..." />
 
-      <button class="btn btn-outline-light position-relative" id="btnCarrito">
+      <button class="btn btn-outline-light position-relative" id="btnCarrito" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
         <i class="bi bi-cart3"></i>
         <span class="badge bg-danger position-absolute top-0 start-100 translate-middle d-none" id="badgeCarrito">0</span>
       </button>
@@ -37,6 +37,17 @@
     <div class="modal fade" id="productmodal" tabindex="-1" aria-labelledby="productmodalLabel" aria-hidden="true"></div>
   </main>
 
+   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Mi carrito</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body" id="offcanvasBody"></div>
+  <div class="offcanvas-footer d-flex justify-content-center align-items-center gap-3 py-3">
+      <button class="btn btn-dark">Finalizar compra</button>
+      <button class="btn btn-dark">Vaciar carrito</button>
+  </div>
+  </div>
 
     <footer>
         <p>Alan Rusch 2026 todos los derechos reservados</p>
@@ -51,7 +62,6 @@
 
 <script src="productos.js"></script>
 <script src="carrito.js"></script>
-<script src="categorias.js"></script>
 <script src="buscador.js"></script>
 
 </body>

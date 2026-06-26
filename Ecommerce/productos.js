@@ -49,14 +49,13 @@ function renderCards(productos) {
       
         let btnAddToCart = document.querySelector(`#btn-agregar-${producto.id}`);
         btnAddToCart.addEventListener ('click', () => {
+          console.log('guardando') 
           saveLocalStorage(producto);
         });
 
       const boostrapmodal = new bootstrap.Modal(container);
       boostrapmodal.show();
     });
-
-
 
 });
 }
